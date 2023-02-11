@@ -144,8 +144,6 @@ function run_testitem_handler(conn, params::TestserverRunTestitemRequestParams)
         end
     end
 
-    @info "AND WE GOT PAST THIS"
-
     mod = Core.eval(Main, :(module $(gensym()) end))
 
     if params.useDefaultUsings
