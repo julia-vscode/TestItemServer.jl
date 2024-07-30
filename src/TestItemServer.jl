@@ -99,7 +99,7 @@ function format_error_message(err, bt)
 end
 
 function clear_coverage_data()
-    @static if VERSION >= v"1.12.0-"
+    @static if VERSION >= v"1.11.0-rc2"
         try
             @ccall jl_clear_coverage_data()::Cvoid
         catch err
@@ -109,7 +109,7 @@ function clear_coverage_data()
 end
 
 function collect_coverage_data!(coverage_results, roots)
-    @static if VERSION >= v"1.12.0-"
+    @static if VERSION >= v"1.11.0-rc2"
         lcov_filename = tempname() * ".info"
         @ccall jl_write_coverage_data(lcov_filename::Cstring)::Cvoid
         cov_info = try
@@ -147,7 +147,7 @@ end
 function run_testitem_handler(conn, params::TestserverRunTestitemRequestParams)
     working_dir = dirname(uri2filepath(params.uri))
     cd(working_dir)
-    
+
     coverage_results = CoverageTools.FileCoverage[] # This will hold the results of various coverage sprints
 
     for i in params.testsetups
