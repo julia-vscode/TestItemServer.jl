@@ -284,7 +284,7 @@ function run_testitem_handler(conn, params::TestserverRunTestitemRequestParams)
                 withpath(testsnippet_filepath) do
                     if params.mode == "Debug"
                         debug_session = wait_for_debug_session()
-                        DebugAdapter.debug_code(debug_session, mod, testsnippet_code, testsnippet_filepath, false)
+                        DebugAdapter.debug_code(debug_session, mod, testsnippet_code, testsnippet_filepath)
                     else
                         params.mode == "Coverage" && clear_coverage_data()
                         try
@@ -332,7 +332,7 @@ function run_testitem_handler(conn, params::TestserverRunTestitemRequestParams)
 
             if params.mode == "Debug"
                 debug_session = wait_for_debug_session()
-                DebugAdapter.debug_code(debug_session, mod, code, filepath, false)
+                DebugAdapter.debug_code(debug_session, mod, code, filepath)
             else
                 params.mode == "Coverage" && clear_coverage_data()
                 try
