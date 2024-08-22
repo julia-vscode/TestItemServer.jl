@@ -414,8 +414,8 @@ function extract_expected_and_actual(result)
             m = match(r"\"(.*)\" == \"(.*)\"", s)
             if m !== nothing
                 try
-                    expected = unescape_string(m.captures[1])
-                    actual = unescape_string(m.captures[2])
+                    expected = unescape_string(m.captures[2])
+                    actual = unescape_string(m.captures[1])
 
                     if expected === nothing
                         expected = missing
